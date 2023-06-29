@@ -1,0 +1,28 @@
+{
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "mongodb": "^5.6.0",
+    "mongoose": "^7.3.1",
+    "nodemon": "^2.0.22"
+  },
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "this is ambulance booking app",
+  "main": "index.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "nodemon ",
+    "start":"nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sachinpandeygurh/medalert-life.git"
+  },
+  "author": "Sachin Pandey",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sachinpandeygurh/medalert-life/issues"
+  },
+  "homepage": "https://github.com/sachinpandeygurh/medalert-life#readme"
+}
