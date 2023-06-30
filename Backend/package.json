@@ -17,12 +17,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/sachinpandeygurh/medalert-life.git"
+    "url": ""
   },
   "author": "Sachin Pandey",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/sachinpandeygurh/medalert-life/issues"
+    "url": ""
   },
-  "homepage": "https://github.com/sachinpandeygurh/medalert-life#readme"
+  "homepage": ""
 }
