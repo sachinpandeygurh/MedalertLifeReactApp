@@ -5,7 +5,8 @@
   "scripts": {
     "start": "npm-run-all --parallel start:medalert-life start:Backend",
     "start:medalert-life": "cd medalert-life && npm start",
-    "start:Backend": "cd Backend && npm start"
+    "start:Backend": "cd Backend && npm start",
+    "server":"nodemon server"
   },
   "author": "Sachin",
   "license": "ISC",
