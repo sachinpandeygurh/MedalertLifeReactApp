@@ -8,7 +8,8 @@ const UserLogin = new mongoose.Schema({
    },
    phoneNo:{
     type:String,
-    required:true
+    required:true,
+    unique:true
    },
    password:{
     type:String,

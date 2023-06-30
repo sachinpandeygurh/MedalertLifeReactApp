@@ -4,6 +4,7 @@ const UserSchema = new mongoose.Schema({
   address: String,
   phoneNo: String,
   ambulanceType: String,
-});
+  currentDate:String
+},{timestamps:true});
 
 module.exports=mongoose.model("orders", UserSchema)

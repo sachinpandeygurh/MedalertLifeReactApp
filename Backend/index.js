@@ -14,10 +14,27 @@ app.use(cors());
 
 //view BookingData
 app.get("/BookingData", async (req, resp) => {
-  const user = await Users.find({});
-  // console.log("data", data)
-  resp.send(user);
+ try {
+    const users = await Users.find({});
+    resp.status(200).send(users)
+ } catch (error) {
+    console.warn(error);
+    resp.send({
+        success:false,
+        error:"Internal Server Error",
+        message:"Error in fetching booking data "
+    })
+ }
 });
+
+app.post("/BookingData", async (req, resp) => {
+    const currentDate = new Date(); 
+    req.body.date = currentDate; 
+    const user = new Users(req.body);
+    const result = await user.save();
+    resp.send(result);
+
+  });
 //regsiter
 app.post("/register", async (req, res) => {
   try {
@@ -39,11 +56,13 @@ app.post("/register", async (req, res) => {
     }
     const hashedPassword = await hashPassword(password);
     //check for already exist user
-    const existingUser = await Users.findOne({ email });
+    const existingUser = await Owner.findOne({ phoneNo });
+    
     if (existingUser) {
       return res.status(200).send({
         success: false,
         message: "User Already Register please Login",
+        _id:existingUser._id
       });
     }
     const user = await new Owner({email,phoneNo,password:hashedPassword}).save();
@@ -62,30 +81,31 @@ app.post("/register", async (req, res) => {
   }
 });
 //login
-app.post('/login', async(req,res)=>{
+app.post('/login', async(req,res)=>{ //slkdfdjflklskdjd
     try {
-        const {email,password}=req.body;
-        if(!email||!password){
+        const {phoneNo,password}=req.body;
+        console.log(phoneNo,password);
+        if(!phoneNo||!password){
             return res.status(404).send({
                 success:false,
-                message:"Invalid email or password"
+                message:"Invalid Phone Number or password"
             })
         }
 
         //check user for compare password
-        const user = await Owner.findOne({email})
+        const user = await Owner.findOne({phoneNo})
         if(!user){
             return res.status(404).send({
                 success:false,
-                message:'Email is not registered',
-                error
+                message:'Phone number is not registered',
+               
             })
         }
         const match = await ComparePassword(password,user.password);
         if(!match){
             return res.status(200).send({
                 success:false,
-                message:"lode aache se dal tori mai ka burr"
+                message:"information does not match please check and try again"
             })
         }
         //token generate kr skte hai yha
@@ -93,7 +113,6 @@ app.post('/login', async(req,res)=>{
             success:true,
             message:'Login Successfully',
             user:{
-                email:user.email,
                 phoneNo:user.phoneNo,
                 role:user.role
             }
@@ -109,12 +128,7 @@ app.post('/login', async(req,res)=>{
     }
 })
 
-app.post("/BookingData", async (req, resp) => {
-  const user = new Users(req.body);
-  let result = await user.save();
-  // console.log("data", data)
-  resp.send(result);
-});
+
 app.post("/owner", async (req, resp) => {
   const user = new Owner(req.body);
   let result = await user.save();
@@ -128,3 +142,5 @@ app.get("/owner", async (req, resp) => {
 });
 
 app.listen(5000);
+
+// console.log(Date());
