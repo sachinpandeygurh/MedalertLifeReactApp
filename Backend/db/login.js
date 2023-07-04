@@ -21,4 +21,4 @@ const UserLogin = new mongoose.Schema({
    }
 });
 
-module.exports = mongoose.model("owners", UserLogin);
+module.exports = mongoose.model("users", UserLogin);

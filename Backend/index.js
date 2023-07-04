@@ -1,10 +1,11 @@
 const mongoose = require("mongoose");
 const express = require("express");
 const cors = require("cors");
+
 require("./db/config");
-const Users = require("./db/users");
+const Orders = require("./db/users");
 // const Login = require('./db/login')
-const Owner = require("./db/login"); //autospanaped kam nahi krta
+const Owner = require("./db/login"); 
 const JWT = require("jsonwebtoken");
 const app = express();
 const {hashPassword,ComparePassword} = require("./db/authhelper/helper.js");
@@ -12,28 +13,31 @@ const {hashPassword,ComparePassword} = require("./db/authhelper/helper.js");
 app.use(express.json());
 app.use(cors());
 
-//view BookingData
-app.get("/BookingData", async (req, resp) => {
+//view BookingData 
+app.get("/BookingData/:phone", async (req, resp) => {
  try {
-    const users = await Users.find({});
-    resp.status(200).send(users)
+    let phone_number=req.params.phone;
+    const orders = await Orders.find({phoneNo:phone_number});
+    resp.status(200).send(orders);
+    
+    // console.log(orders);
+    // localStorage.setItem("phone",JSON.stringify())
  } catch (error) {
     console.warn(error);
-    resp.send({
+    resp.status(500).send({
         success:false,
         error:"Internal Server Error",
         message:"Error in fetching booking data "
     })
  }
-});
+}); 
 
 app.post("/BookingData", async (req, resp) => {
     const currentDate = new Date(); 
     req.body.date = currentDate; 
-    const user = new Users(req.body);
+    const user = new Orders(req.body);
     const result = await user.save();
     resp.send(result);
-
   });
 //regsiter
 app.post("/register", async (req, res) => {
@@ -81,12 +85,12 @@ app.post("/register", async (req, res) => {
   }
 });
 //login
-app.post('/login', async(req,res)=>{ //slkdfdjflklskdjd
+app.post('/login', async(req,res)=>{ 
     try {
         const {phoneNo,password}=req.body;
         console.log(phoneNo,password);
         if(!phoneNo||!password){
-            return res.status(404).send({
+            return res.status(500).send({
                 success:false,
                 message:"Invalid Phone Number or password"
             })
@@ -103,18 +107,20 @@ app.post('/login', async(req,res)=>{ //slkdfdjflklskdjd
         }
         const match = await ComparePassword(password,user.password);
         if(!match){
-            return res.status(200).send({
+            return res.status(401).send({
                 success:false,
                 message:"information does not match please check and try again"
             })
         }
+        console.log(user)
         //token generate kr skte hai yha
         res.status(200).send({
             success:true,
             message:'Login Successfully',
             user:{
                 phoneNo:user.phoneNo,
-                role:user.role
+                role:user.role,
+                _id:user._id
             }
         })
 
@@ -128,11 +134,30 @@ app.post('/login', async(req,res)=>{ //slkdfdjflklskdjd
     }
 })
 
+//orderlist
+// app.get('/user/:id',async (req,res)=>{
+//   try {
+//     const id=req.params.id;
+//     // console.log('abhishek',id)
+//     const bookings=await Users.findOne({_id:id})
+//     if(bookings){
+//       res.status(200).send(bookings)
+//     }
+//     // console.log(bookings)
+//     res.status(200).send(bookings);
+//   } catch (error) {
+//     console.log(error);
+//     res.status(505).send({
+//       message:"error in orderlist"
+      
+//     })
+//   }
+// })
 
 app.post("/owner", async (req, resp) => {
   const user = new Owner(req.body);
   let result = await user.save();
-  // console.log("data", data)
+  console.log("data", data)
   resp.send(result);
 });
 
@@ -143,4 +168,4 @@ app.get("/owner", async (req, resp) => {
 
 app.listen(5000);
 
-// console.log(Date());
+console.log(Date());
