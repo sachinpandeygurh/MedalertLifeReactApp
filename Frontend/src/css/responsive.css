@@ -1,0 +1,54 @@
+@media screen and (max-width:360px){
+    .logo_menu{
+        margin: 0;
+        padding: 0;
+    }
+}
+
+@media screen and (max-width:720px) { 
+    
+.navbar-nav{
+    display: none;
+}
+.navbar-toggler:hover .navbar-nav , .navbar-toggler:click .navbar-nav{
+    display: grid;
+}
+#action-buts {
+    position: relative;
+    left: 0;
+    bottom: 0;
+    top: 0em;
+    right: 0;
+    width: auto;
+}
+.con-type-cont{
+    justify-content: space-around;
+    opacity: 1;
+    top: 43px;
+    display: grid;
+}
+.con-type-cont{
+    display: grid;
+
+}
+.services{
+    width: auto;
+}
+.container .counter{
+    width: auto;
+}
+.container .counter .counter-in{
+    margin: 1em 0;
+}
+.brand_logo_img {
+    width: 3em;
+    position: relative;
+    left: auto;
+    border-radius: 2em;
+}
+}
+@media screen and (min-width:900px) { 
+    #action-buts{
+        padding-top: 2em;
+    }
+}
