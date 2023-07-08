@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
 import axios from "axios";
 const Login = () => {
   const [phoneNo, setPhoneNo] = useState("");
@@ -18,26 +19,39 @@ const Login = () => {
 
   const handleLogin = async () => {
     try {
-      let result = await axios.post("http://localhost:5000/login", {
+      let result = await axios.post("/login", {
         phoneNo,
         password,
       });
-      console.log(result);
+      //console.log(result);
       if (result && result?.data?.message) {
         if (result?.data?.user?._id)
           localStorage.setItem("id", JSON.stringify(result?.data?.user));
-          
+        setTimeout(() => {
+            
         result?.data?.user?.role === 1
-          ? navigate("/dashboard")
-          : navigate(`/myprofile/${result?.data?.user?.phoneNo}`);
+        ? navigate("/dashboard")
+        : navigate(`/myprofile/${result?.data?.user?.phoneNo}`);
+        }, 3000);
       }
+      toast("Login successful", {
+        position: "top-right",
+        type: "success",
+      });
+      
     } catch (error) {
       console.log(error);
+      toast("Login Unsuccessful. Please contact our Medalert Life support.", {
+        position: "top-right",
+        type: "error",
+      });
+      
     }
   };
 
   return (
     <div className="register mt-5">
+      <ToastContainer position="right-top" />
       <div className="container">
         <div className="row justify-content-center">
           <div className="col-lg-6">

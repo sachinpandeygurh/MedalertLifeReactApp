@@ -20,7 +20,7 @@ function Demo() {
 
   const onPlaceChanged = (place) => {
     setSearchResult(place)
-    console.log(searchResult)
+    //console.log(searchResult)
   }
 
   if(!isLoaded) {

@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "description": "this is a medalert MERN App for Ambulnce booking",
   "scripts": {
-    "start": "npm-run-all --parallel start:medalert-life start:Backend",
-    "start:medalert-life": "cd medalert-life && npm start",
+    "start": "npm-run-all --parallel start:Frontend start:Backend",
+    "start:Frontend": "cd Frontend && npm start",
     "start:Backend": "cd Backend && npm start",
     "server":"nodemon server"
   },

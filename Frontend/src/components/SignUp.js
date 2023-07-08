@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
+import { ToastContainer , toast } from "react-toastify";
 const SignUp = () => {
 
   // email
@@ -15,28 +16,43 @@ const SignUp = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      let res = await axios.post("http://localhost:5000/register", {
+      let res = await axios.post("/register", {
         email,
         phoneNo,
         password,
         // id=
       });
-      // //console.log(res.data.user._id)
+      // ////console.log(res.data.user._id)
       if (res && res?.data?.success) {
-        alert(res?.data?.message);
-        navigate(`/myprofile/${phoneNo}`)
+        // alert(res?.data?.message);
+        toast(res?.data?.message, {
+          position: "top-right",
+          type: "success",
+        });
+        setTimeout(() => {
+          navigate(`/myprofile/${phoneNo}`)
+        }, 2500);
 
         localStorage.setItem('id',JSON.stringify(res?.data?.user));
       }else{
-        alert(res?.data?.message)
+        // alert(res?.data?.message)
+        toast(res?.data?.message, {
+          position: "top-right",
+          type: "error",
+        });
       }
     } catch (error) {
-      //console.log(error);
+      ////console.log(error);
+      toast("Signup unsuccessful. Please contact our Medalert Life support.", {
+        position: "top-right",
+        type: "error",
+      });
     }
   }; //8383475877
 
   return (
     <div className="my-5">
+      <ToastContainer/>
       <div className="container my-5">
         <div className="row justify-content-center">
           <div className="col-md-6">

@@ -1,18 +1,17 @@
 const mongoose = require("mongoose");
 const express = require("express");
 const cors = require("cors");
-const Query = require("./db/Contact");
-require("./db/config");
-const Orders = require("./db/users");
-// const Login = require('./db/login')
-const Owner = require("./db/login");
+const Query = require("./db/model/Contact");
+const ConnectDb = require("./db/config");
+const Orders = require("./db/model/users");
+
+const Owner = require("./db/model/login");
 const JWT = require("jsonwebtoken");
 const app = express();
 const { hashPassword, ComparePassword } = require("./db/authhelper/helper.js");
-
+ConnectDb();
 app.use(express.json());
 app.use(cors());
-
 //view BookingData
 app.get("/BookingData/:phone", async (req, resp) => {
   try {
@@ -20,7 +19,7 @@ app.get("/BookingData/:phone", async (req, resp) => {
     const orders = await Orders.find({ phoneNo: phone_number });
     resp.status(200).send(orders);
 
-    // console.log(orders);
+    //console.log(orders);
     // localStorage.setItem("phone",JSON.stringify())
   } catch (error) {
     console.warn(error);
@@ -29,6 +28,18 @@ app.get("/BookingData/:phone", async (req, resp) => {
       error: "Internal Server Error",
       message: "Error in fetching booking data ",
     });
+  }
+});
+
+app.get("/BookingData", async (req, res) => {
+  try {
+    // const currentDate = new Date();
+    // req.body.date = currentDate;
+
+    const result = await Orders.find();
+    res.status(200).json(result);
+  } catch (error) {
+    res.status(500).json({ error: "Error retrieving booking data" });
   }
 });
 
@@ -80,7 +91,7 @@ app.post("/register", async (req, res) => {
       user,
     });
   } catch (error) {
-    console.log(error);
+    //console.log(error);
     res.status(500).send({
       success: false,
       message: "Error in Registration",
@@ -92,7 +103,7 @@ app.post("/register", async (req, res) => {
 app.post("/login", async (req, res) => {
   try {
     const { phoneNo, password } = req.body;
-    console.log(phoneNo, password);
+    //console.log(phoneNo, password);
     if (!phoneNo || !password) {
       return res.status(500).send({
         success: false,
@@ -115,7 +126,7 @@ app.post("/login", async (req, res) => {
         message: "information does not match please check and try again",
       });
     }
-    console.log(user);
+    //console.log(user);
     //token generate kr skte hai yha
     res.status(200).send({
       success: true,
@@ -127,7 +138,7 @@ app.post("/login", async (req, res) => {
       },
     });
   } catch (error) {
-    console.log(error);
+    //console.log(error);
     res.status(500).send({
       success: false,
       message: "Error in Login",
@@ -136,30 +147,10 @@ app.post("/login", async (req, res) => {
   }
 });
 
-//orderlist
-// app.get('/user/:id',async (req,res)=>{
-//   try {
-//     const id=req.params.id;
-//     // console.log('abhishek',id)
-//     const bookings=await Users.findOne({_id:id})
-//     if(bookings){
-//       res.status(200).send(bookings)
-//     }
-//     // console.log(bookings)
-//     res.status(200).send(bookings);
-//   } catch (error) {
-//     console.log(error);
-//     res.status(505).send({
-//       message:"error in orderlist"
-
-//     })
-//   }
-// })
-
 app.post("/owner", async (req, resp) => {
   const user = new Owner(req.body);
   let result = await user.save();
-  console.log("data", data);
+  //console.log("data", data);
   resp.send(result);
 });
 
@@ -168,47 +159,53 @@ app.get("/owner", async (req, resp) => {
   resp.send(user);
 });
 
+
 app.post("/contact", async (req, res) => {
   try {
-    console.log(req.body.data)
-    const { firstname, lastname, email, phone, message } = req.body.data;
-    if (!email || !firstname || !lastname || !phone || !message) {
-      return res.status(500).send({
+    const { firstname, lastname, email, phone, message } = req.body;
+
+    if ( !firstname || !lastname || !phone || !email || !message) {
+      return res.status(400).json({
         success: false,
-        message: "Invalid Details",
+        message: "Invalid details",
       });
     }
-    const queryuser = await new Query({
+
+    const query = new Query({
       firstname,
       lastname,
       email,
       phone,
       message,
-    }).save();
-    res.status(201).send({
+    });
+
+    await query.save();
+
+    res.status(201).json({
       success: true,
-      message: "Query Submitted",
-      queryuser,
+      message: "Query submitted",
+      query,
     });
   } catch (error) {
     console.log(error);
-    res.status(500).send({
+    res.status(500).json({
       success: false,
-      message: "Internal Server Error",
-      error,
+      message: "Internal server error",
+      error: error.message,
     });
   }
 });
+
+
 app.get("/data-contact-medalert", async (req, res) => {
   try {
-    const query=await Query.find();
+    const query = await Query.find();
     res.status(200).send({
       query,
-      message:"Query Displayed"
-    })
-
+      message: "Query Displayed",
+    });
   } catch (error) {
-    console.log(error);
+    //console.log(error);
     res.status(500).send({
       success: false,
       message: "Internal Server Error",
@@ -219,4 +216,4 @@ app.get("/data-contact-medalert", async (req, res) => {
 
 app.listen(5000);
 
-console.log(Date());
+//console.log(Date());

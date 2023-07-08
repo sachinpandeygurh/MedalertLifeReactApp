@@ -1,7 +1,5 @@
 import React from 'react'
 import { CCarousel, CCarouselItem,CImage } from '@coreui/react'
-
-import Form from './Form'
 import img1 from '../images/slider/1.png'
 import img2 from '../images/slider/4.png'
 import img3 from '../images/slider/5.png'

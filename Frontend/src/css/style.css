@@ -579,6 +579,12 @@ a {
 .form-group {
     background: white;
     /* padding: 1rem; */
+    display: flex;
+    justify-content: space-evenly;
+    /* margin: 1em 0; */
+}
+.form-group input {
+ margin: 1em 0;
 }
 .cform {
     padding: 0.8rem 1rem;
@@ -586,7 +592,7 @@ a {
     width: 43%;
 }
 .text-area {
-    width: 87% !important;
+    width: 90% !important;
 }
 input.contact-us-page-submit {
     width: 40%;
@@ -594,7 +600,7 @@ input.contact-us-page-submit {
     color: white;
     font-weight: 700;
     letter-spacing: 1px;
-    margin: auto;
+    /* margin: auto; */
 }
 .bg-danger{
     background-color: #921c0a !important;

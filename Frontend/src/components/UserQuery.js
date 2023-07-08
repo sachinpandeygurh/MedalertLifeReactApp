@@ -1,19 +1,21 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Table from "react-bootstrap/Table";
+// import { useNavigate } from "react-router-dom";
 const UserQuery = () => {
   const [data, setData] = useState([]);
+  // const navigate = useNavigate()
   useEffect(() => {
     getUsers();
   }, []);
   const getUsers = async () => {
     try {
-      let d = await axios.get("http://localhost:5000/data-contact-medalert");
+      let d = await axios.get("/data-contact-medalert");
       setData(d?.data?.query);
-      // console.log(d?.data?.query);
-      //   console.log(data);
+      //console.log(d?.data?.query);
+      //   //console.log(data);
     } catch (error) {
-      console.log(error);
+      //console.log(error);
     }
   };
   return (

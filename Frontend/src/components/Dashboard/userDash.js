@@ -6,17 +6,17 @@ const UserDash = () => {
   const [users, setUsers] = useState([]);
   const id = localStorage.getItem("id");
   const idd = JSON.parse(id);
-  console.log(idd,'abhishek sang shrishti');
-  //  console.log(idd.phoneNo)
+  //console.log(idd,'abhishek sang shrishti');
+  //  //console.log(idd.phoneNo)
   // const phone_number = localStorage.getItem();
   useEffect(() => {
     getUsers();
   }, []);
   const getUsers = async () => {
     let result = await axios.get(
-      `http://localhost:5000/Bookingdata/${idd.phoneNo}`
+      `/Bookingdata/${idd.phoneNo}`
     );
-    console.log(result);
+    //console.log(result);
     if (result) {
       setUsers(result?.data);
     }

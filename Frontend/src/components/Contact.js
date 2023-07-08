@@ -1,29 +1,49 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+
 const Contact = () => {
-  const [data, setData] = useState({
-    firstname: "",
-    lastname: "",
-    phone: "",
-    email: "",
-    message: "",
-  });
+  const [firstname, setFirstname] = useState("");
+  const [lastname, setLastname] = useState("");
+  const [phone, setPhone] = useState("");
+  const [email, setEmail] = useState("");
+  const [message, setMessage] = useState("");
+  const navigate = useNavigate();
+
   const handleSubmit = async (e) => {
+    e.preventDefault();
+    console.warn(firstname, lastname, phone, email, message);
     try {
-      const res = await axios.post("http://localhost:5000/contact", {
-        data,
+      await axios.post("/contact", {
+        firstname,
+        lastname,
+        phone,
+        email,
+        message,
       });
-     if(res.success){
-      setData({...data,[data.email]:'',[data.firstname]:'',[data.lastname]:'',[data.message]:'',[data.phone]:''})
-     }
-    } catch (error) {console.log(error.message)}
+      toast("Thanks for contacting Medalert Life. We will be in touch soon.", {
+        position: "top-right",
+        type: "success",
+      });
+      setTimeout(() => {
+        navigate("/about"); 
+        
+      }, 3000);
+
+    } catch (error) {
+      console.log(error.message);
+      toast(
+        "Sorry, we encountered an internal server error. Please contact our Medalert Life support.",
+        {  position: "top-right",
+          type: "error" }
+      );
+    }
   };
-  const onChange = (e) => {
-    setData({ ...data, [e.currentTarget.name]: e.currentTarget.value });
-    console.log(data);
-  };
+
   return (
     <>
+      <ToastContainer position="right-top" />
       <div className="container my-5">
         <h1 className="text-center mb-0">Contact Us</h1>
         <p className="text-center">
@@ -43,16 +63,16 @@ const Contact = () => {
                     placeholder="first name"
                     required
                     name="firstname"
-                    id="name"
-                    onChange={onChange}
+                    value={firstname}
+                    onChange={(e) => setFirstname(e.target.value)}
                   />
                   <input
                     type="text"
                     className="cform password"
                     placeholder="last name"
                     name="lastname"
-                    id="middle"
-                    onChange={onChange}
+                    value={lastname}
+                    onChange={(e) => setLastname(e.target.value)}
                   />
                 </div>
                 <div className="form-group">
@@ -63,7 +83,8 @@ const Contact = () => {
                     required=""
                     name="email"
                     id="email"
-                    onChange={onChange}
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
                   />
                   <input
                     type="text"
@@ -72,7 +93,11 @@ const Contact = () => {
                     required=""
                     name="phone"
                     id="mobile"
-                    onChange={onChange}
+                    maxLength={10}
+                    pattern="[6789][0-9]{9}"
+                    title="Please enter a valid mobile number."
+                    value={phone}
+                    onChange={(e) => setPhone(e.target.value)}
                   />
                 </div>
                 <div className="form-group">
@@ -83,8 +108,8 @@ const Contact = () => {
                     rows={3}
                     className="text-area px-3"
                     placeholder="write massage here..."
-                    defaultValue={""}
-                    onChange={onChange}
+                    value={message}
+                    onChange={(e) => setMessage(e.target.value)}
                   />
                 </div>
                 <div className="form-group d-flex">
@@ -102,12 +127,11 @@ const Contact = () => {
 
           <div className="col-md-6 d-grid justify-content-center">
             <p className="w-100  d-md-inline">
-              {" "}
               &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
               &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
               &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
               &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-              &nbsp; &nbsp; &nbsp;{" "}
+              &nbsp; &nbsp; &nbsp;
             </p>
             <div
               className="col d-grid justify-items-center"
@@ -154,5 +178,4 @@ const Contact = () => {
     </>
   );
 };
-
 export default Contact;

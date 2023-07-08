@@ -1,6 +1,9 @@
 import React from 'react'
-
+import logoImg from "../images/logo.png";
+import { Link } from 'react-router-dom';
 const Footer = () => {
+  const id = localStorage.getItem("id");
+  const idd = JSON.parse(id);
   return (
     <>
      
@@ -16,39 +19,39 @@ const Footer = () => {
       {/* Left */}
       {/* Right */}
       <div>
-        <a
-          href="https://www.facebook.com/medalertlife"
+        <Link
+          to="https://www.facebook.com/medalertlife"
           className="me-4 text-reset Social-links"
         >
           <i className="fab fa-facebook-f text-white" />
-        </a>
-        <a
-          href="https://twitter.com/Medalert6?t=mbyop1V9vrmFgnFI_-y6Og&s=08"
+        </Link>
+        <Link
+          to="https://twitter.com/Medalert6?t=mbyop1V9vrmFgnFI_-y6Og&s=08"
           className="me-4 text-reset Social-links"
         >
           <i className="fab fa-twitter text-white" />
-        </a>
-        <a
-          href="https://goo.gl/maps/LSfztkwPaNLbeLex6"
+        </Link>
+        <Link
+          to="https://goo.gl/maps/LSfztkwPaNLbeLex6"
           className="me-4 text-reset Social-links"
         >
           <i className="fab fa-google text-white" />
-        </a>
-        <a
-          href="https://www.instagram.com/medalertlife/"
+        </Link>
+        <Link
+          to="https://www.instagram.com/medalertlife/"
           className="me-4 text-reset Social-links"
         >
           <i className="fab fa-instagram text-white" />
-        </a>
-        <a
-          href="https://www.linkedin.com/company/medalert-life/"
+        </Link>
+        <Link
+          to="https://www.linkedin.com/company/medalert-life/"
           className="me-4 text-reset Social-links"
         >
           <i className="fab fa-linkedin text-white" />
-        </a>
-        {/* <a href="" class="me-4 text-reset Social-links">
+        </Link>
+        {/* <Link to="" class="me-4 text-reset Social-links">
   <i class="fab fa-github"></i>
-</a> */}
+</Link> */}
       </div>
       {/* Right */}
     </section>
@@ -62,7 +65,7 @@ const Footer = () => {
           <div className="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
             {/* Content */}
             <h6 className="text-uppercase d-flex justify-content-evenly fw-bold mb-4">
-              <img src="./images/ambulance.png" alt="" />
+              <img src={logoImg} className='brand_logo_img w-25' alt={`Medalert Life ${logoImg}`} />
               {/* <i class="fas fa-gem me-3"></i>Medalert Life */}
             </h6>
             <p>
@@ -75,24 +78,24 @@ const Footer = () => {
             {/* Links */}
             <h6 className="text-uppercase fw-bold mb-4">Products</h6>
             <p>
-              <a href="./about/index.html" className="text-reset">
+              <Link to="/about" className="text-reset">
                 About
-              </a>
+              </Link>
             </p>
             <p>
-              <a href="./services/index.html" className="text-reset">
+              <Link to="/services" className="text-reset">
                 Services
-              </a>
+              </Link>
             </p>
             <p>
-              <a href="./pp/index.html" className="text-reset">
+              <Link to="/Policy" className="text-reset">
                 Privacy Policy
-              </a>
+              </Link>
             </p>
             <p>
-              <a href="./tnc/index.html" className="text-reset">
+              <Link to="/tnc" className="text-reset">
                 Terms and Condition
-              </a>
+              </Link>
             </p>
           </div>
           {/* Grid column */}
@@ -101,24 +104,14 @@ const Footer = () => {
             {/* Links */}
             <h6 className="text-uppercase fw-bold mb-4">Useful links</h6>
             <p>
-              <a href="error.html" className="text-reset">
+              <Link to="/pricing" className="text-reset">
                 Pricing
-              </a>
+              </Link>
             </p>
             <p>
-              <a href="error.html" className="text-reset">
-                Settings
-              </a>
-            </p>
-            <p>
-              <a href="error.html" className="text-reset">
+              <Link to={idd? `/myprofile/${idd?.phoneNo}` : '/signup'} className="text-reset">
                 Orders
-              </a>
-            </p>
-            <p>
-              <a href="error.html" className="text-reset">
-                Help
-              </a>
+              </Link>
             </p>
           </div>
           {/* Grid column */}
@@ -127,7 +120,7 @@ const Footer = () => {
             {/* Links */}
             <h6 className="text-uppercase fw-bold mb-4">Contact</h6>
             <p>
-              <i className="fas fa-home me-3" /> Bhopal MP
+              <i className="fas fa-home me-3" /> Bhopal, Jabalpur & Indore MP
             </p>
             <p>
               <i className="fas fa-envelope me-3" />
@@ -136,13 +129,12 @@ const Footer = () => {
             <p>
               <i className="fas fa-phone me-3" /> +91 9752 625 048
             </p>
-            {/* <p><i class="fas fa-print me-3"></i> + 01 234 567 89</p> */}
             <section id="download-app">
               <p>Book an ambulance easily with our mobile app. Available on:</p>
               <div className="app-icons row flex-shrink-auto">
-                <a
+                <Link
                   className="flex-shrink-auto w-50"
-                  href=" https://bybrisk.page.link/?link=https://bybrisk.com?business_id=629c800e2c5817b22d7b3066&apn=com.bybrisk.strike.app"
+                  to=" https://bybrisk.page.link/?link=https://bybrisk.com?business_id=629c800e2c5817b22d7b3066&apn=com.bybrisk.strike.app"
                 >
                   {/* <i class="fab fa-apple"></i> */}
                   <img
@@ -151,10 +143,10 @@ const Footer = () => {
                     src="./images/appstore.png"
                     alt=""
                   />
-                </a>
-                <a
+                </Link>
+                <Link
                   className="flex-shrink-auto w-50"
-                  href=" https://bybrisk.page.link/?link=https://bybrisk.com?business_id=629c800e2c5817b22d7b3066&apn=com.bybrisk.strike.app"
+                  to=" https://bybrisk.page.link/?link=https://bybrisk.com?business_id=629c800e2c5817b22d7b3066&apn=com.bybrisk.strike.app"
                 >
                   {/* <i class="fab fa-google-play"></i> */}
                   <img
@@ -163,7 +155,7 @@ const Footer = () => {
                     src="./images/playstore.png"
                     alt=""
                   />
-                </a>
+                </Link>
               </div>
             </section>
           </div>
@@ -179,9 +171,9 @@ const Footer = () => {
       style={{ backgroundColor: "rgba(0, 0, 0, 0.05)" }}
     >
       © 2023 Copyright:
-      <a className="text-reset fw-bold" href="#">
+      <Link className="text-reset fw-bold" to="#">
         Medalert Life
-      </a>
+      </Link>
     </div>
     {/* Copyright */}
   </footer>

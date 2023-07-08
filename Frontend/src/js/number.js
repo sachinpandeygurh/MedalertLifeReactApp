@@ -116,13 +116,13 @@ setInterval(() => {
 // const leftbtn=document.querySelector("#prev");
 // const rightbtn=document.querySelector("#next");
 // rightbtn.addEventListener("click",function (event) {
-//     // //console.log("here");
+//     // ////console.log("here");
 //     const conent=document.querySelector(".carousel-inner");
 //     conent.scrollLeft+=1100;
 //     event.preventDefault();
 // })
 // leftbtn.addEventListener("click",function (event) {
-//     // //console.log("here");
+//     // ////console.log("here");
 //     const conent=document.querySelector(".carousel-inner");
 //     conent.scrollLeft-=1100;
 //     event.preventDefault();
@@ -136,7 +136,7 @@ let hasClass = (arr) => {
 }
 const func = () => {
     let x = document.getElementById('Carousel-main');
-    // //console.log(x)
+    // ////console.log(x)
     let first = document.getElementById('itt-1')
     let second = document.getElementById('itt-2');
     let third = document.getElementById('itt-3');
@@ -163,7 +163,7 @@ setInterval(() => {
 
 const handleClick = (e) => {
     let x = document.getElementById('Carousel-main');
-    // //console.log(x)
+    // ////console.log(x)
     let first = document.getElementById('itt-1')
     let second = document.getElementById('itt-2');
     let third = document.getElementById('itt-3');
@@ -185,7 +185,7 @@ const handleClick = (e) => {
 }
 const handleClick1 = (e) => {
     let x = document.getElementById('Carousel-main');
-    // //console.log(x)
+    // ////console.log(x)
     let first = document.getElementById('itt-1')
     let second = document.getElementById('itt-2');
     let third = document.getElementById('itt-3');
@@ -259,7 +259,7 @@ $("#submit").click(function () {
       });
       
       var verificationCode = $('meta[name="google-site-verification"]').attr('content');
-//console.log(verificationCode); // Output: wgeWV4xdEetKEkkXdkEIS-2byNi0kNdzyy5HRHW8jMg
+////console.log(verificationCode); // Output: wgeWV4xdEetKEkkXdkEIS-2byNi0kNdzyy5HRHW8jMg
 
       
 $(window).scroll(function () {
@@ -284,7 +284,7 @@ $(window).scroll(function () {
       // console.clear();
 function logAndClear(message) {
     console.clear();
-    //console.log(message);
+    ////console.log(message);
   }
   
   logAndClear("Using this console may allow attackers to impersonate you and steal your information using an attack called Self-XSS.Do not enter or paste code that you do not understand.");

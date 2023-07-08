@@ -1,58 +1,64 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+
 
 const Form = () => {
   const [name, setName] = useState("");
   const [address, setAddress] = useState("");
   const [phoneNo, setPhoneNo] = useState("");
   const [ambulanceType, setAmbulanceType] = useState("");
-  const id=localStorage.getItem('id');
-  let idd=''
-  if(id)idd=JSON.parse(id)
-  let phone=''
-  if(idd) phone = idd.phoneNo
-  console.log(phone);
-  // console.log(phone);
+  const id = localStorage.getItem("id");
+  let idd = "";
+  if (id) idd = JSON.parse(id);
+  let phone = "";
+  if (idd) phone = idd.phoneNo;
+  //console.log(phone);
+  //console.log(phone);
   const currentDate = new Date().toLocaleString("en-IN", {
     timeZone: "Asia/Kolkata",
   });
   const navigate = useNavigate();
   const handleSubmit = async () => {
-    // //console.log(name, address, phoneNo, ambulanceType);
-    alert("Thank you for using medalert life Ambulance services");
-    let result = await fetch("http://localhost:5000/BookingData", {
+    //console.log(name, address, phoneNo, ambulanceType);
+    
+    toast("Thank you for using medalert life Ambulance services", {
+      position: "top-right",
+      type: "success",
+    });
+    let result = await fetch("/BookingData", {
       method: "POST",
       body: JSON.stringify({
         name,
         address,
-        phoneNo:phone!==undefined&&phone!==null&&phone!==''?phone:phoneNo,
+        phoneNo:
+          phone !== undefined && phone !== null && phone !== ""
+            ? phone
+            : phoneNo,
         ambulanceType,
         currentDate,
       }),
       headers: { "Content-type": "application/json" },
     });
-    // console.warn(result);
-   //loda te lehsun
-    const message = 
-`Address:${address} ,
-Name:${name},
-Contact:${phoneNo},
-Ambulance type:${ambulanceType}`;
+    const message = `Address:${address} ,
+    Name:${name},
+    Contact:${phoneNo},
+    Ambulance type:${ambulanceType}`;
 
-
-    const phone_number = "+919752625048";
-
-    const whatsappUrl =
-      "https://api.whatsapp.com/send?phone=" +
-      phone_number +
-      "&text=" +
-      encodeURIComponent(message);
-    window.open(whatsappUrl);
-    !idd||idd===undefined||idd===null ? navigate("/signup") : navigate(`/myprofile/:${idd.phoneNo}`)
-    // callTo:`8319697083`
+    // const whatsappUrl =
+    //   "https://api.whatsapp.com/send?phone=" +
+    //   phone_number +
+    //   "&text=" +
+    //   encodeURIComponent(message);
+    // window.open(whatsappUrl);
+    // !idd || idd === undefined || idd === null
+    //   ? navigate("/signup")
+    //   : navigate(`/myprofile/:${idd.phoneNo}`);
+    // // callTo:`8319697083`
   };
   return (
     <>
+      <ToastContainer position="right-top" />
       <div
         id="action-buts"
         style={{ backgroundColor: "#372163", color: "#f3f3f3" }}
@@ -73,22 +79,11 @@ Ambulance type:${ambulanceType}`;
         </div>
         <div className="bookform">
           <form id="indexform">
-            <p
-              className="callus d-md-grid fw-bolder"
-              style={{ textAlign: "center", marginTop: 0 }}
-            >
-            Click and  Call Now
-              <a
-                href="tel:+919752625048"
-                onClick={`gtag_report_conversion()`}
-                className="book-form-a text-decoration-none text-danger fs-3 fw-bold"
-              >
-                +91 9752 625 048{" "}
-              </a>
-              <br />
-              OR
+            <p className="text-danger fs-6 fw-bold">
+              Fill out the form and click{" "}
+              <b className="text-white">Get Call Back</b> for immediate
+              assistance.
             </p>
-            <font>Inquiry now</font>
             <input
               type="text"
               id="name"
@@ -143,13 +138,18 @@ Ambulance type:${ambulanceType}`;
             </select>
             <br />
             <input
-              className="submitbutton btn  btn-lg"
+              className="submitbutton btn btn-lg"
               style={{ backgroundColor: "#643cb5", color: "#f3f3f3" }}
               type="button"
               name=""
               defaultValue="Get Call Back"
               id="submit"
-              onClick={handleSubmit}
+              onClick={() => {
+                handleSubmit();
+                setTimeout(() => {
+                  window.location.href = "tel:+919752625048";
+                }, 1500);
+              }}
             />
           </form>
         </div>
@@ -159,3 +159,19 @@ Ambulance type:${ambulanceType}`;
 };
 
 export default Form;
+
+// <p
+// className="callus d-md-grid fw-bolder"
+// style={{ textAlign: "center", marginTop: 0 }}
+// >
+// Click and Call Now
+// <a
+//   href="tel:+919752625048"
+//   onClick={`gtag_report_conversion()`}
+//   className="book-form-a text-decoration-none text-danger fs-3 fw-bold"
+// >
+//   +91 9752 625 048{" "}
+// </a>
+// <br />
+// OR
+//    </p>

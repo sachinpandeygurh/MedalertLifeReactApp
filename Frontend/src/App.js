@@ -1,6 +1,7 @@
 import React from "react";
 import jQuery from "jquery";
 import "bootstrap/dist/css/bootstrap.min.css";
+
 import "./App.css";
 import "../src/css/style.css";
 import "../src/css/responsive.css";
@@ -22,11 +23,16 @@ import Demo from "./components/Demo";
 import Map from "./components/Map";
 import NotFound from "./components/NotFound";
 import UserQuery from "./components/UserQuery";
+import Policy from "./components/Policy";
+import TAndC from "./components/TAndC";
+import "react-toastify/dist/ReactToastify.css";
+// import { Query } from "mongoose";
 
 function App() {
   let data=localStorage.getItem("id");
   let user=JSON.parse(data);
-  // console.log(user.role); 
+  //console.log(user.role); 
+  
   return (
     <div className="">
      
@@ -48,22 +54,29 @@ function App() {
             /> 
           </Route>
           <Route exact path="/about" element={<About />} />
-          <Route exact path="/query" element={<UserQuery/>} />
           <Route exact path="/services" element={<Services />} />
           <Route exact path="/contact" element={
-          <>
-          <Contact />
-          <Map/>
-          </>
+            <>
+            <Contact/>
+            <Map/>
+            </>
           } />
           <Route exact path="/login" element={<Login />} />
           <Route exact path="/signup" element={<SignUp/>} />
 {user?.role===1 ?
-          (<Route exact path="/dashboard" element={<UserList />} />) :
+          (<Route exact path="/dashboard" element={
+            <>
+            <UserList/>
+            <UserQuery/>
+            </>
+          } />) :
          ( <Route exact path="/myprofile/:phone" element={<UserDash/>}/>)
           }
           <Route exact path="/demo" element={<Demo/>}/>
           <Route path="*" element={<NotFound/>}/>
+          <Route path="/policy" element={<Policy/>}/>
+          <Route path="/tnc" element={<TAndC/>}/>
+
         </Routes>
         <Footer />
       </BrowserRouter>
