@@ -4,9 +4,17 @@
 
 body{
     background-color: #f1f2f9;
+    overflow-x: hidden;
 }
 ::marker {
     display: none !important;
+}
+.bg-inherit{
+    background: inherit;
+
+}
+.navbarTogglerBtn{
+    display: none;
 }
 .nav-item , .navbar-nav{
     /* display: inline; */

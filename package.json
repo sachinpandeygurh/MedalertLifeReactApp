@@ -6,7 +6,10 @@
     "start": "npm-run-all --parallel start:frontend start:backend",
     "start:frontend": "cd frontend && npm start",
     "start:backend": "cd backend && npm start",
-    "server": "nodemon backend/index.js"
+    "server": "nodemon backend/index.js",
+    "predeploy": "npm run build",
+   "deploy": "gh-pages -d build",
+    "build": "react-scripts build"
   },
   "author": "Sachin",
   "Co-author": "pushpraj paroha",
@@ -41,5 +44,6 @@
   "devDependencies": {
     "concurrently": "^8.2.0",
     "npm-run-all": "^4.1.5"
-  }
+  },
+  "homepage": "https://medalertlife.com/"
 }

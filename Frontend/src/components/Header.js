@@ -24,6 +24,18 @@ const Header = () => {
   const router = useNavigate();
   const id = localStorage.getItem("id");
   const idd = JSON.parse(id);
+
+  const [dBlock, setDBlock] = useState(""); // dBlock state for display block CSS classes
+
+  const toggleNavbar = () => {
+    setVisible(!visible);
+    setDBlock("");
+  };
+
+  const closeNavbar = () => {
+    setVisible(false);
+    setDBlock("d-block"); // Add display block CSS classes when closing the navbar
+  };
   //console.log(idd.phoneNo);
   // const idd =JSON.parse(id);
   useEffect(() => {}, [id]);
@@ -50,55 +62,43 @@ const Header = () => {
             </Link>
           </CNavbarBrand>
           <CNavbarToggler
-            aria-label="Toggle navigation"
-            aria-expanded={visible}
-            onClick={() => setVisible(!visible)}
-          />
-          <CCollapse className="navbar-collapse" visible={visible}>
-            <CNavbarNav>
-              <CNav>
-                <CNavLink className="text-white fw-bold">
-                  <Link
-                    className="text-decoration-none text-white nav-link"
-                    to="/"
-                  >
-                    Home
-                  </Link>
-                </CNavLink>
-              </CNav>
-              <CNav>
-                <CNavLink className="text-white fw-bold">
-                  <Link
-                    className="text-decoration-none text-white nav-link"
-                    to="/about"
-                  >
-                    About
-                  </Link>
-                </CNavLink>
-              </CNav>
-              <CNav>
-                <CNavLink className="text-white fw-bold">
-                  <Link
-                    className="text-decoration-none text-white nav-link"
-                    to="/services"
-                  >
-                    Services
-                  </Link>
-                </CNavLink>
-              </CNav>
-              <CNav>
-                <CNavLink className="text-white fw-bold">
-                  <Link
-                    className="text-decoration-none text-white nav-link"
-                    to="/contact"
-                  >
-                    Contact
-                  </Link>
-                </CNavLink>
-              </CNav>
-            </CNavbarNav>
-          </CCollapse>
-          <CNavbarToggler
+        aria-label="Toggle navigation"
+        aria-expanded={visible}
+        onClick={toggleNavbar}
+      />
+      <CCollapse className={`navbar-collapse ${visible ? "show" : ""}`} onClick={closeNavbar}>
+        <CNavbarNav className={`custmnav ${dBlock}`}>
+          <CNav>
+            <CNavLink className="text-white fw-bold">
+              <Link className="text-decoration-none text-white nav-link" to="/">
+                Home
+              </Link>
+            </CNavLink>
+          </CNav>
+          <CNav>
+            <CNavLink className="text-white fw-bold">
+              <Link className="text-decoration-none text-white nav-link" to="/about">
+                About
+              </Link>
+            </CNavLink>
+          </CNav>
+          <CNav>
+            <CNavLink className="text-white fw-bold">
+              <Link className="text-decoration-none text-white nav-link" to="/services">
+                Services
+              </Link>
+            </CNavLink>
+          </CNav>
+          <CNav>
+            <CNavLink className="text-white fw-bold">
+              <Link className="text-decoration-none text-white nav-link" to="/contact">
+                Contact
+              </Link>
+            </CNavLink>
+          </CNav>
+        </CNavbarNav>
+      </CCollapse>
+          <CDropdownToggle className="bg-inherit navbarTogglerBtn"
             aria-label="Toggle navigation"
             aria-expanded={visibleone}
             onClick={() => setVisibleone(!visibleone)}

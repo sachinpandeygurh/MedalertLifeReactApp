@@ -1,6 +1,8 @@
 import React from 'react'
 import logoImg from "../images/logo.png";
 import { Link } from 'react-router-dom';
+import appStoreImg from '../images/appstore.png'
+import playStoreImg from "../images/playstore.png"
 const Footer = () => {
   const id = localStorage.getItem("id");
   const idd = JSON.parse(id);
@@ -140,8 +142,8 @@ const Footer = () => {
                   <img
                     style={{ width: "10em" }}
                     className="my-3"
-                    src="./images/appstore.png"
-                    alt=""
+                    src={appStoreImg}
+                    alt={`Medalert life ${appStoreImg}`}
                   />
                 </Link>
                 <Link
@@ -152,8 +154,8 @@ const Footer = () => {
                   <img
                     style={{ width: "10em" }}
                     className="my-3"
-                    src="./images/playstore.png"
-                    alt=""
+                    src={playStoreImg}
+                    alt={`Medalert Life ${playStoreImg}`}
                   />
                 </Link>
               </div>
