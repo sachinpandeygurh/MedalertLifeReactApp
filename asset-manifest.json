@@ -1,0 +1,21 @@
+{
+  "files": {
+    "main.css": "/static/css/main.b9822610.css",
+    "main.js": "/static/js/main.ddff8a05.js",
+    "static/media/5.png": "/static/media/5.3c42a5ab12bd5918bb55.png",
+    "static/media/4.png": "/static/media/4.c4cdf5007e9e523ab8cb.png",
+    "static/media/1.png": "/static/media/1.6bff0786972070824dc2.png",
+    "static/media/logo.png": "/static/media/logo.92f2a9f54b591ae90b21.png",
+    "static/media/hospital.png": "/static/media/hospital.9c0690b72bdbc6be49ce.png",
+    "static/media/dial4242-icu_w19T-dl1X.png": "/static/media/dial4242-icu_w19T-dl1X.559496635f7d9b39c863.png",
+    "static/media/dial4242-air_c3DnD5Pq_W.png": "/static/media/dial4242-air_c3DnD5Pq_W.159a0a75c81978cddf08.png",
+    "static/media/dial4242-ambulancecount_oQyiK55lEh.png": "/static/media/dial4242-ambulancecount_oQyiK55lEh.8722ebcce6e5ef2257d4.png",
+    "index.html": "/index.html",
+    "main.b9822610.css.map": "/static/css/main.b9822610.css.map",
+    "main.ddff8a05.js.map": "/static/js/main.ddff8a05.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.b9822610.css",
+    "static/js/main.ddff8a05.js"
+  ]
+}
