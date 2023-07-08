@@ -4,10 +4,6 @@ import axios from "axios";
 import { ToastContainer , toast } from "react-toastify";
 const SignUp = () => {
 
-  // email
-  // phoneNo
-  // password
-
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [phoneNo, setPhone] = useState("");
