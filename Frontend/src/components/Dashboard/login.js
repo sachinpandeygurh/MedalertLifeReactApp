@@ -23,29 +23,27 @@ const Login = () => {
         phoneNo,
         password,
       });
-      //console.log(result);
+      console.log(result);
       if (result && result?.data?.message) {
         if (result?.data?.user?._id)
           localStorage.setItem("id", JSON.stringify(result?.data?.user));
         setTimeout(() => {
-            
-        result?.data?.user?.role === 1
-        ? navigate("/dashboard")
-        : navigate(`/myprofile/${result?.data?.user?.phoneNo}`);
+          result?.data?.user?.role === 1
+            ? navigate("/dashboard")
+            : navigate(`/myprofile/${result?.data?.user?.phoneNo}`);
         }, 3000);
+        console.log(result?.data?.user?.phoneNo);
       }
       toast("Login successful", {
         position: "top-right",
         type: "success",
       });
-      
     } catch (error) {
       console.log(error);
-      toast("Login Unsuccessful. Please contact our Medalert Life support.", {
+      toast(error.message, {
         position: "top-right",
         type: "error",
       });
-      
     }
   };
 
