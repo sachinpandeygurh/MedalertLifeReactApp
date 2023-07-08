@@ -10,7 +10,7 @@
   },
   "author": "Sachin",
   "Co-author": "pushpraj paroha",
-  "license": "ISC",
+  "license": "ISC", 
   "dependencies": {
     "@coreui/react": "^4.8.0",
     "@react-google-maps/api": "^2.18.1",
