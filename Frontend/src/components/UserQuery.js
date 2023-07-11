@@ -10,7 +10,7 @@ const UserQuery = () => {
   }, []);
   const getUsers = async () => {
     try {
-      let d = await axios.get("/data-contact-medalert");
+      let d = await axios.get("/api/contact/data-contact-medalert");
       setData(d?.data?.query);
       //console.log(d?.data?.query);
       //   //console.log(data);

@@ -1,31 +1,31 @@
 import React from "react";
-import jQuery from "jquery";
 import "bootstrap/dist/css/bootstrap.min.css";
 
-import "./App.css";
-import "../src/css/style.css";
-import "../src/css/responsive.css";
+import '../css/index.css';
+import "../css/App.css";
+import "../css/style.css";
+import "../css/responsive.css";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
-import Header from "./components/Header";
-import Services from "./components/Services";
-import About from "./components/About";
-import Footer from "./components/Footer";
-import main from "./components/main";
-import Contact from "./components/Contact";
-import Hero from "./components/Hero";
-import UserList from "./components/Dashboard/userlist";
-import Form from "./components/Form";
-import Login from "./components/Dashboard/login";
-import SignUp from "./components/SignUp";
-import UserDash from "./components/Dashboard/userDash";
-import Demo from "./components/Demo";
-import Map from "./components/Map";
-import NotFound from "./components/NotFound";
-import UserQuery from "./components/UserQuery";
-import Policy from "./components/Policy";
-import TAndC from "./components/TAndC";
+import Header from "./Header";
+import Services from "./Services";
+import About from "./About";
+import Footer from "./Footer";
+import Contact from "./Contact";
+import Hero from "./Hero";
+import UserList from "./Dashboard/userlist";
+import Form from "./Form";
+import Login from "./login";
+import SignUp from "./SignUp";
+import UserDash from "./Dashboard/userDash";
+import Demo from "./Demo";
+import Map from "./Map";
+import NotFound from "./NotFound";
+import UserQuery from "./UserQuery";
+import Policy from "./Policy";
+import TAndC from "./TAndC";
 import "react-toastify/dist/ReactToastify.css";
+import ForgotPassword from "./ForgotPassword";
 // import { Query } from "mongoose";
 
 function App() {
@@ -76,6 +76,7 @@ function App() {
           <Route path="*" element={<NotFound/>}/>
           <Route path="/policy" element={<Policy/>}/>
           <Route path="/tnc" element={<TAndC/>}/>
+          {/* <Route path="/forgot" element={<ForgotPassword/>}/> */}
 
         </Routes>
         <Footer />

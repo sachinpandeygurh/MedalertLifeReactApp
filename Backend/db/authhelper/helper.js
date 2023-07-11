@@ -5,7 +5,7 @@ try {
     const hashedPassword = await bcrypt.hash(password,saltRound);
     return hashedPassword;
 } catch (error) {
-    ////console.log(error)
+    throw new Error('there is an error hashing the password')
 }
 }
 const ComparePassword = (password,hashedPassword)=>{

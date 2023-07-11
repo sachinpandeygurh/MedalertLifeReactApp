@@ -8,7 +8,7 @@ const UserList = () => {
     getUsers();
   }, []);
   const getUsers = async () => {
-    let data = await axios.get(`/Bookingdata`);
+    let data = await axios.get(`/api/booking/Bookingdata`);
     // console.log(data?.data);
     if (data?.data) {
       setUsers(data?.data);

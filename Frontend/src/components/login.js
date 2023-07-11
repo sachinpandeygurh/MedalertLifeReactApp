@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import axios from "axios";
 const Login = () => {
@@ -15,29 +15,34 @@ const Login = () => {
     // if (id) {
     //   navigate(`/myprofile/${idd}`);
     // }
-  });
+  },[]);
 
   const handleLogin = async () => {
     try {
-      let result = await axios.post("/login", {
+      let result = await axios.post("/api/auth/login", {
         phoneNo,
         password,
       });
       console.log(result);
       if (result && result?.data?.message) {
+
+        toast(result?.data?.message, {
+          position: "top-right",
+          type: "success",
+        });
+
+       setTimeout(() => {
         if (result?.data?.user?._id)
-          localStorage.setItem("id", JSON.stringify(result?.data?.user));
-        setTimeout(() => {
-          result?.data?.user?.role === 1
-            ? navigate("/dashboard")
-            : navigate(`/myprofile/${result?.data?.user?.phoneNo}`);
-        }, 3000);
-        console.log(result?.data?.user?.phoneNo);
+        localStorage.setItem("id", JSON.stringify(result?.data?.user));
+     
+        result?.data?.user?.role === 1
+          ? navigate("/dashboard")
+          : navigate(`/myprofile/${result?.data?.user?.phoneNo}`);
+       }, 2000);
+        
+        
       }
-      toast("Login successful", {
-        position: "top-right",
-        type: "success",
-      });
+    
     } catch (error) {
       console.log(error);
       toast(error.message, {
@@ -84,6 +89,14 @@ const Login = () => {
                     Submit
                   </button>
                 </div>
+                <h4 className="d-flex justify-content-between">
+                  <Link to="/" className="text-dark btn btn-sm btn-danger">
+                    Forgot Password
+                  </Link>
+                  <Link to="/signup" className="text-dark btn btn-sm btn-info">
+                    First Time User <b>Signup</b>
+                  </Link>
+                </h4>
               </div>
             </div>
           </div>

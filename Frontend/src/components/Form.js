@@ -26,7 +26,7 @@ const Form = () => {
       position: "top-right",
       type: "success",
     });
-    let result = await fetch("/BookingData", {
+    let result = await fetch("/api/booking/BookingData", {
       method: "POST",
       body: JSON.stringify({
         name,
@@ -40,10 +40,10 @@ const Form = () => {
       }),
       headers: { "Content-type": "application/json" },
     });
-    const message = `Address:${address} ,
-    Name:${name},
-    Contact:${phoneNo},
-    Ambulance type:${ambulanceType}`;
+    // const message = `Address:${address} ,
+    // Name:${name},
+    // Contact:${phoneNo},
+    // Ambulance type:${ambulanceType}`;
 
     // const whatsappUrl =
     //   "https://api.whatsapp.com/send?phone=" +
@@ -51,9 +51,9 @@ const Form = () => {
     //   "&text=" +
     //   encodeURIComponent(message);
     // window.open(whatsappUrl);
-    // !idd || idd === undefined || idd === null
-    //   ? navigate("/signup")
-    //   : navigate(`/myprofile/:${idd.phoneNo}`);
+    !idd || idd === undefined || idd === null
+      ? navigate("/signup")
+      : navigate(`/myprofile/:${idd.phoneNo}`);
     // // callTo:`8319697083`
   };
   return (
@@ -108,7 +108,7 @@ const Form = () => {
               type="text"
               id="number"
               name="contact"
-              placeholder="Contact Number"
+              placeholder="10 Digits Contact Number"
               required=""
               pattern="[0-9]{10}"
               title="Enter a valid phone number."

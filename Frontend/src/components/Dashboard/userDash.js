@@ -14,7 +14,7 @@ const UserDash = () => {
   }, []);
   const getUsers = async () => {
     let result = await axios.get(
-      `/Bookingdata/${idd.phoneNo}`
+      `/api/booking/Bookingdata/${idd.phoneNo}`
     );
     //console.log(result);
     if (result) {

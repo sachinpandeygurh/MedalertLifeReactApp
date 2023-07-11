@@ -15,7 +15,7 @@ const Contact = () => {
     e.preventDefault();
     console.warn(firstname, lastname, phone, email, message);
     try {
-      await axios.post("/contact", {
+      await axios.post("/api/contact/contact", {
         firstname,
         lastname,
         phone,

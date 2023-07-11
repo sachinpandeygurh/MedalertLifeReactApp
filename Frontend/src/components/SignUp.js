@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate} from "react-router-dom";
 import axios from "axios";
 import { ToastContainer , toast } from "react-toastify";
 const SignUp = () => {
@@ -8,11 +8,10 @@ const SignUp = () => {
   const [password, setPassword] = useState("");
   const [phoneNo, setPhone] = useState("");
   const navigate=useNavigate();
-  const params = useParams()
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      let res = await axios.post("/register", {
+      let res = await axios.post("/api/auth/register", {
         email,
         phoneNo,
         password,
@@ -93,6 +92,14 @@ const SignUp = () => {
                     
                   />
                 </div>
+                <h4 className="d-flex justify-content-between">
+                  <Link to="/" className="text-dark btn btn-sm btn-danger">
+                    Forgot Password
+                  </Link>
+                  <Link to="/login" className="text-dark btn btn-sm btn-info">
+                   Already Have Account <b>Login</b>
+                  </Link>
+                </h4>
               </form>
               
             </div>

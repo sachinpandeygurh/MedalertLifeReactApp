@@ -1,20 +1,5 @@
 import React, { useState, useEffect } from "react";
-import {
-  CNavbar,
-  CContainer,
-  CNavbarBrand,
-  CNavbarToggler,
-  CCollapse,
-  CNavbarNav,
-  CNavItem,
-  CNavLink,
-  CDropdown,
-  CDropdownToggle,
-  CDropdownMenu,
-  CDropdownItem,
-  CDropdownDivider,
-  CNav,
-} from "@coreui/react";
+import { CNavbar, CContainer, CNavbarBrand, CNavbarToggler, CCollapse, CNavbarNav, CNavLink, CDropdownToggle, CNav} from "@coreui/react";
 import logoImg from "../images/logo.png";
 import { Link, useNavigate } from "react-router-dom";
 
@@ -24,7 +9,6 @@ const Header = () => {
   const router = useNavigate();
   const id = localStorage.getItem("id");
   const idd = JSON.parse(id);
-
   const [dBlock, setDBlock] = useState(""); // dBlock state for display block CSS classes
 
   const toggleNavbar = () => {
@@ -57,7 +41,7 @@ const Header = () => {
               srcSet={logoImg}
               className="brand_logo_img"
             />
-            <Link className="fw-bold text-decoration-none text-white px-1">
+            <Link to="/" className="fw-bold text-decoration-none text-white px-1">
               Medalert Life
             </Link>
           </CNavbarBrand>
