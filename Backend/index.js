@@ -1,9 +1,14 @@
+const dotenv = require("dotenv");
+
 const express = require("express");
 const cors = require("cors");
 const Query = require("./db/model/Contact");
 const ConnectDb = require("./db/config");
 const Orders = require("./db/model/users");
-const PORT=5000;
+
+dotenv.config();
+
+const PORT=process.env.PORT;
 const Owner = require("./db/model/login");
 const app = express()
 ConnectDb();
