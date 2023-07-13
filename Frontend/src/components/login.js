@@ -19,7 +19,7 @@ const Login = () => {
 
   const handleLogin = async () => {
     try {
-      let result = await axios.post("/api/auth/login", {
+      let result = await axios.post("https://medalert-life-react-app-vzww.vercel.app/api/auth/login", {
         phoneNo,
         password,
       });

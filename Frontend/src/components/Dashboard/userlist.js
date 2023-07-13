@@ -6,9 +6,9 @@ const UserList = () => {
   const [user, setUsers] = useState([]);
   useEffect(() => {
     getUsers();
-  }, []);
+  }, []); 
   const getUsers = async () => {
-    let data = await axios.get(`/api/booking/Bookingdata`);
+    let data = await axios.get(`https://medalert-life-react-app-vzww.vercel.app/api/booking/Bookingdata`);
     // console.log(data?.data);
     if (data?.data) {
       setUsers(data?.data);

@@ -7,6 +7,7 @@
       <meta http-equiv="X-UA-Compatible" content="ie=edge">
       <meta name="HandheldFriendly"content="True">
       <meta name="google-site-verification" content="wgeWV4xdEetKEkkXdkEIS-2byNi0kNdzyy5HRHW8jMg">
+      <meta search="मेडलर्टलाइफ" result="https://medalertlife.com">
       <meta name="keywords" content="Medalert Life, ambulance, medical emergency, diagnostic services, medical treatment, emergency care, surgery, rehabilitation">
       <meta name="description" content="Medalert Life provides fast and reliable ambulance services, diagnostic services, and medical treatments for medical emergencies. Our team is available 24/7 to ensure you receive the medical care you need.">
       <meta name="keywords" content="health, wellness, nutrition, fitness, mental health">
@@ -42,7 +43,7 @@ head.insertAdjacentHTML('beforeend', '<meta property="og:image" content="https:/
 var offerStartDate = new Date();
 var offerStartDateString = offerStartDate.toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' });
 
-head.insertAdjacentHTML('beforeend', '<meta http-equiv="offer start" content="' + offerStartDateString + '">');
+head.insertAdjacentHTML('offers', '<meta http-equiv="offer start" content="' + offerStartDateString + '">');
 
 });
 

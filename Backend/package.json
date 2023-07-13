@@ -1,4 +1,15 @@
 {
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "Ambulance booking app backend",
+  "main": "index.js",
+  "engines": {
+    "node": "18.16.0"
+  },
+  "scripts": {
+    "start": "node index.js",
+    "test": "node index.js"
+  },
   "dependencies": {
     "bcrypt": "^5.1.0",
     "body-parser": "^1.20.2",
@@ -11,22 +22,14 @@
     "nodemon": "^2.0.22",
     "vercel": "^31.0.2"
   },
-  "name": "backend",
-  "version": "1.0.0",
-  "description": "this is ambulance booking app",
-  "main": "index.js",
-  "scripts": {
-    "test": "nodemon ",
-    "start": "nodemon index.js"
-  },
   "repository": {
     "type": "git",
-    "url": ""
+    "url": "https://github.com/sachinpandeygurh/MedalertLifeReactApp/tree/master/Backend"
   },
   "author": "Sachin Pandey",
   "license": "ISC",
   "bugs": {
-    "url": ""
+    "url": "https://github.com/sachinpandeygurh/MedalertLifeReactApp/issues"
   },
-  "homepage": ""
+  "homepage": "https://github.com/sachinpandeygurh/MedalertLifeReactApp"
 }
