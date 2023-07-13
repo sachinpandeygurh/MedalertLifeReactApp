@@ -11,7 +11,7 @@ const SignUp = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      let res = await axios.post("/api/auth/register", {
+      let res = await axios.post("https://medalertlife-backend.onrender.com/api/auth/register", {
         email,
         phoneNo,
         password,
@@ -38,7 +38,7 @@ const SignUp = () => {
       }
     } catch (error) {
       ////console.log(error);
-      toast("Signup unsuccessful. Please contact our Medalert Life support.", {
+      toast(error.message, {
         position: "top-right",
         type: "error",
       });
