@@ -15,10 +15,6 @@ ConnectDb();
 app.use(express.json());
 app.use(cors());
 
-// app.use(Router,'/api/auth')
-// app.use(Router,'/api/contact')
-// app.use(Router,'/api/booking')
-
 app.use('/api/auth',require('./routes/auth'));
 app.use('/api/booking',require('./routes/booking'));
 app.use('/api/contact',require('./routes/contact'));
