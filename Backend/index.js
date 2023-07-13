@@ -17,6 +17,10 @@ ConnectDb();
 app.use(express.json());
 app.use(cors());
 
+app.get('/',(req,res)=>{
+  return res.send('abhishek')
+})
+
 app.use('/api/auth', urlencodedParser ,require('./routes/auth'));
 app.use('/api/booking',urlencodedParser , require('./routes/booking'));
 app.use('/api/contact',urlencodedParser , require('./routes/contact'));

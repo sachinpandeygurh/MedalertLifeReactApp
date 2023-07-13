@@ -1,6 +1,6 @@
 {
   "name": "medalert-life",
-  "proxy": "https://medalertlife-backend.onrender.com",
+  "proxy": "https://medalert-life-react-app-ydsb.vercel.app",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
