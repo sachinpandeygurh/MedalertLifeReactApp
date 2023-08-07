@@ -7,8 +7,8 @@
     "node": "18.16.0"
   },
   "scripts": {
-    "start": "nodemon server.js",
-    "test": "nodemon server.js"
+    "start": "node server.js",
+    "test": "node server.js"
   },
   "dependencies": {
     "bcrypt": "^5.1.0",
