@@ -19,7 +19,7 @@ const Login = () => {
 
   const handleLogin = async () => {
     try {
-      let result = await axios.post("https://medalert-life-react-app-vzww.vercel.app/api/auth/login", {
+      let result = await axios.post("http://localhost:5000/api/auth/login", {
         phoneNo,
         password,
       });
@@ -30,15 +30,12 @@ const Login = () => {
           position: "top-right",
           type: "success",
         });
-
-       setTimeout(() => {
         if (result?.data?.user?._id)
         localStorage.setItem("id", JSON.stringify(result?.data?.user));
      
         result?.data?.user?.role === 1
           ? navigate("/dashboard")
           : navigate(`/myprofile/${result?.data?.user?.phoneNo}`);
-       }, 2000);
         
         
       }

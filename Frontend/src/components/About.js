@@ -307,7 +307,8 @@ const About = () => {
     </div>
   </section>
 </>
-
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2343825218133494"
+     crossorigin="anonymous"></script>
 
     </>
   )

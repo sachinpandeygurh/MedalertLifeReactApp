@@ -27,6 +27,7 @@ import TAndC from "./TAndC";
 import "react-toastify/dist/ReactToastify.css";
 import ForgotPassword from "./ForgotPassword";
 // import { Query } from "mongoose";
+import GoogleAd from "./ads";
 
 function App() {
   let data=localStorage.getItem("id");
@@ -77,7 +78,7 @@ function App() {
           <Route path="/policy" element={<Policy/>}/>
           <Route path="/tnc" element={<TAndC/>}/>
           {/* <Route path="/forgot" element={<ForgotPassword/>}/> */}
-
+          <Route path="/ads.txt" element={<GoogleAd/>} />
         </Routes>
         <Footer />
       </BrowserRouter>

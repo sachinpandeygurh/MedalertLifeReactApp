@@ -13,7 +13,7 @@ router.post("/contact", async (req, res) => {
       });
     }
 
-    const query = new Query({ firstname, lastname, email, phone, message});
+    const query = await  Query.create({ firstname, lastname, email, phone, message});
 
     await query.save();
 

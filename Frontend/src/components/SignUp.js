@@ -11,7 +11,7 @@ const SignUp = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      let res = await axios.post("https://medalertlife-backend.onrender.com/api/auth/register", {
+      let res = await axios.post("http://localhost:5000/api/auth/register", {
         email,
         phoneNo,
         password,

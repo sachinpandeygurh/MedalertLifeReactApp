@@ -13,6 +13,8 @@ const UserLogin = new mongoose.Schema({
    },
    password:{
     type:String,
+    min:6,
+    max:14,
     required:true
    },
    role:{

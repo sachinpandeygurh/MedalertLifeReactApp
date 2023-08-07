@@ -1,6 +1,6 @@
-const express= require("express");
-const router=express.Router();
-const Orders=require("../db/model/users")
+const express = require("express");
+const router = express.Router();
+const Orders = require("../db/model/users");
 
 //view BookingData
 router.get("/BookingData/:phone", async (req, resp) => {
@@ -22,22 +22,27 @@ router.get("/BookingData/:phone", async (req, resp) => {
 });
 
 router.post("/BookingData", async (req, resp) => {
-    const currentDate = new Date();
-    req.body.date = currentDate;
-    const user = new Orders(req.body);
-    const result = await user.save();
-    resp.send(result);
+  const currentDate = new Date();
+  req.body.date = currentDate;
+  const user = await Orders.create({
+    name: req.body.name,
+    address: req.body.address,
+    phoneNo: req.body.phoneNo,
+    ambulanceType: req.body.ambulanceType,
+    currentDate: req.body.currentDate,
   });
-  
+  console.log(req.body)
+  const result = await user.save();
+  resp.send(result);
+});
 
 //for admin only
 router.get("/BookingData", async (req, res) => {
-    try {
-     
-      const result = await Orders.find();
-      res.status(200).json(result);
-    } catch (error) {
-      res.status(500).json({ error: "Error retrieving booking data" });
-    }
-  });
-module.exports = router
+  try {
+    const result = await Orders.find();
+    res.status(200).json(result);
+  } catch (error) {
+    res.status(500).json({ error: "Error retrieving booking data" });
+  }
+});
+module.exports = router;

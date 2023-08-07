@@ -2,13 +2,13 @@
   "name": "backend",
   "version": "1.0.0",
   "description": "Ambulance booking app backend",
-  "main": "index.js",
+  "main": "server.js",
   "engines": {
     "node": "18.16.0"
   },
   "scripts": {
-    "start": "node index.js",
-    "test": "node index.js"
+    "start": "nodemon server.js",
+    "test": "nodemon server.js"
   },
   "dependencies": {
     "bcrypt": "^5.1.0",
@@ -30,6 +30,5 @@
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/sachinpandeygurh/MedalertLifeReactApp/issues"
-  },
-  "homepage": "https://github.com/sachinpandeygurh/MedalertLifeReactApp"
+  }
 }
