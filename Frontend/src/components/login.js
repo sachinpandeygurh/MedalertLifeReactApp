@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import axios from "axios";
+import proxy from "../utils";
 const Login = () => {
   const [phoneNo, setPhoneNo] = useState("");
   const [password, setPassword] = useState("");
@@ -19,19 +20,24 @@ const Login = () => {
 
   const handleLogin = async () => {
     try {
-      let result = await axios.post("http://localhost:5000/api/auth/login", {
+      let result = await axios.post(`${proxy}/api/auth/login`, {
         phoneNo,
         password,
-      });
+      },
+      {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      },);
       console.log(result);
       if (result && result?.data?.message) {
+        localStorage.setItem("id", JSON.stringify(result?.data?.user));
 
         toast(result?.data?.message, {
           position: "top-right",
           type: "success",
         });
         if (result?.data?.user?._id)
-        localStorage.setItem("id", JSON.stringify(result?.data?.user));
      
         result?.data?.user?.role === 1
           ? navigate("/dashboard")

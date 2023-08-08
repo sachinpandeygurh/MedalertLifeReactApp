@@ -2,20 +2,21 @@ import React, { useEffect, useState } from "react";
 import Table from "react-bootstrap/Table";
 import { useParams } from "react-router-dom";
 import axios from "axios";
+import proxy from "../../utils";
+
 const UserDash = () => {
   const [users, setUsers] = useState([]);
   const id = localStorage.getItem("id");
   const idd = JSON.parse(id);
-  //console.log(idd,'abhishek sang shrishti');
-  //  //console.log(idd.phoneNo)
-  // const phone_number = localStorage.getItem();
   useEffect(() => {
     getUsers();
   }, []);
   const getUsers = async () => {
+    
     let result = await axios.get(
-      `/api/booking/Bookingdata/${idd.phoneNo}`
+      `${proxy}/api/booking/Bookingdata/${idd.phoneNo}`
     );
+    console.log(result);
     //console.log(result);
     if (result) {
       setUsers(result?.data);

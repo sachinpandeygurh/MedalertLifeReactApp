@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
+import proxy from "../utils";
 
 
 const Form = () => {
@@ -26,7 +27,7 @@ const Form = () => {
       position: "top-right",
       type: "success",
     });
-    let result = await fetch("/api/booking/BookingData", {
+    let result = await fetch(`${proxy}/api/booking/BookingData`, {
       method: "POST",
       body: JSON.stringify({
         name,

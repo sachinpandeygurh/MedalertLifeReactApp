@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
+import proxy from "../utils";
 
 const Contact = () => {
   const [firstname, setFirstname] = useState("");
@@ -15,7 +16,7 @@ const Contact = () => {
     e.preventDefault();
     console.warn(firstname, lastname, phone, email, message);
     try {
-      await axios.post("/api/contact/contact", {
+      await axios.post(`${proxy}/api/contact/contact`, {
         firstname,
         lastname,
         phone,
@@ -107,7 +108,7 @@ const Contact = () => {
                     // cols={35}
                     rows={3}
                     className="text-area px-3"
-                    placeholder="write massage here..."
+                    placeholder="write message here..."
                     value={message}
                     onChange={(e) => setMessage(e.target.value)}
                   />
@@ -167,7 +168,7 @@ const Contact = () => {
                 <input
                   type="button"
                   className=" bg-secondary h-100 border-0 justify-content-end col-8 "
-                  defaultValue="Bhopal MP 462001"
+                  defaultValue="Bhopal & Indore MP 462001"
                 />
               </div>
             </div>

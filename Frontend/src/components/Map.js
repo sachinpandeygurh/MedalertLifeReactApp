@@ -12,7 +12,7 @@ const Map = () => {
               <div className="card-body">
                 <div className="india-flag mb-4">
                   <div className="flag">
-                    <img src="images/ind-flag.svg" alt="" />
+                    <img src="images/ind-flag.svg" alt="medalert Indianflag" />
                   </div>
                   <div className="naame-lfag">India</div>
                 </div>

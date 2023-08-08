@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link, useNavigate} from "react-router-dom";
 import axios from "axios";
 import { ToastContainer , toast } from "react-toastify";
+import proxy from "../utils";
 const SignUp = () => {
 
   const [email, setEmail] = useState("");
@@ -11,12 +12,18 @@ const SignUp = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      let res = await axios.post("http://localhost:5000/api/auth/register", {
+      let res = await axios.post(`${proxy}/api/auth/register`, {
         email,
         phoneNo,
         password,
-        // id=
-      });
+       
+      },
+      {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+      );
       // ////console.log(res.data.user._id)
       if (res && res?.data?.success) {
         // alert(res?.data?.message);
@@ -24,11 +31,11 @@ const SignUp = () => {
           position: "top-right",
           type: "success",
         });
-        setTimeout(() => {
-          navigate(`/myprofile/${phoneNo}`)
-        }, 2500);
-
+        
         localStorage.setItem('id',JSON.stringify(res?.data?.user));
+        
+        navigate(`/myprofile/${phoneNo}`)
+
       }else{
         // alert(res?.data?.message)
         toast(res?.data?.message, {

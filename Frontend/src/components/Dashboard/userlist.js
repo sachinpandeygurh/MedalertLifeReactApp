@@ -2,13 +2,14 @@
 import React, { useEffect, useState } from "react";
 import Table from "react-bootstrap/Table";
 import axios from "axios";
+import proxy from "../../utils";
 const UserList = () => {
   const [user, setUsers] = useState([]);
   useEffect(() => {
     getUsers();
   }, []);
   const getUsers = async () => {
-    let data = await axios.get(`/api/booking/Bookingdata`);
+    let data = await axios.get(`${proxy}/api/booking/Bookingdata`);
     // console.log(data?.data);
     if (data?.data) {
       setUsers(data?.data);

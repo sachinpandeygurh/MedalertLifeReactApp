@@ -1,21 +1,19 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Table from "react-bootstrap/Table";
-// import { useNavigate } from "react-router-dom";
+import proxy from "../utils";
 const UserQuery = () => {
+  
   const [data, setData] = useState([]);
-  // const navigate = useNavigate()
   useEffect(() => {
     getUsers();
   }, []);
   const getUsers = async () => {
     try {
-      let d = await axios.get("/api/contact/data-contact-medalert");
+      
+      let d = await axios.get(`${proxy}/api/contact/data-contact-medalert`);
       setData(d?.data?.query);
-      //console.log(d?.data?.query);
-      //   //console.log(data);
     } catch (error) {
-      //console.log(error);
     }
   };
   return (

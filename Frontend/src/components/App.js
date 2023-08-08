@@ -85,5 +85,5 @@ function App() {
     </div>
   );
 }
-
+console.clear()
 export default App;
