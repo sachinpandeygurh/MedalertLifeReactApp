@@ -1,3 +1,18 @@
-# https://www.robotstxt.org/robotstxt.html
 User-agent: *
-Disallow:
+Disallow: /private/
+Disallow: /sensitive-data/
+Disallow: /restricted-pages/
+
+User-agent: Googlebot
+Disallow: /private/
+Disallow: /sensitive-data/
+Allow: /public/
+Allow: /public/assets/
+
+User-agent: Bingbot
+Disallow: /private/
+Disallow: /sensitive-data/
+Allow: /public/
+Allow: /public/assets/
+
+Sitemap: https://medalertlife.com/sitemap.xml
